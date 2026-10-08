@@ -1,16 +1,13 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using KMod;
-using static CaiLib.Logger.Logger;
 
 namespace DecorLights
 {
-	public class DecorLightsMod : UserMod2
-	{
-		public override void OnLoad(Harmony harmony)
-		{
-			LogInit(mod);
-
-			base.OnLoad(harmony);
-		}
-	}
+    public sealed class DecorLightsMod : UserMod2
+    {
+        public override void OnLoad(Harmony harmony)
+        {
+            base.OnLoad(harmony);
+        }
+    }
 }
