@@ -1,0 +1,6 @@
+<Project>
+  <Target Name="ValidateONIManagedPath" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(ONIManagedPath)\Assembly-CSharp.dll')"
+           Text="ONI assemblies were not found at '$(ONIManagedPath)'. Set ONIManagedPath to OxygenNotIncluded_Data\Managed or set ONI_ROOT to the game folder." />
+  </Target>
+</Project>
