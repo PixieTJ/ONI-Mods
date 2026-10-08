@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <ONIManagedPath Condition="'$(ONIManagedPath)' == '' and '$(ONI_ROOT)' != ''">$(ONI_ROOT)\OxygenNotIncluded_Data\Managed</ONIManagedPath>
+    <ONIManagedPath Condition="'$(ONIManagedPath)' == ''">C:\Program Files (x86)\Steam\steamapps\common\OxygenNotIncluded\OxygenNotIncluded_Data\Managed</ONIManagedPath>
+  </PropertyGroup>
+</Project>
