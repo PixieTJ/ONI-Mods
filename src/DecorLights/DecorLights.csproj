@@ -1,20 +1,44 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProjectGuid>{81AF11CC-7A6A-4F2A-BE2A-EB928E10E088}</ProjectGuid>
-    <Configurations>VanillaDebug;VanillaRelease;SpacedOutDebug;SpacedOutRelease</Configurations>
-    <TargetFramework>net471</TargetFramework>
-    <RootNamespace>DecorLights</RootNamespace>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>DecorLights</AssemblyName>
-    <AssemblyVersion>2022.10.10.0</AssemblyVersion>
-    <FileVersion>2022.10.10.1</FileVersion>
+    <RootNamespace>DecorLights</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <AssemblyVersion>2026.10.8.0</AssemblyVersion>
+    <FileVersion>2026.10.8.0</FileVersion>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
-  <PropertyGroup>
-    <ModName>Decor Lights</ModName>
-    <ModDescription></ModDescription>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)' == 'VanillaRelease'" />
-  <PropertyGroup Condition="'$(Configuration)' == 'VanillaDebug'" />
-  <PropertyGroup Condition="'$(Configuration)' == 'SpacedOutRelease'" />
-  <PropertyGroup Condition="'$(Configuration)' == 'SpacedOutDebug'" />
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(ONIManagedPath)\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>$(ONIManagedPath)\Assembly-CSharp-firstpass.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(ONIManagedPath)\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(ONIManagedPath)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(ONIManagedPath)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="mod.yaml" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="mod_info.yaml" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="anim\**\*" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="previews\**\*" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
 </Project>
