@@ -1,0 +1,46 @@
+name: Build Decor Lights
+
+on:
+  push:
+    branches:
+      - modernize-decor-lights
+    paths:
+      - 'src/DecorLights/**'
+      - '.github/workflows/build-decorlights.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Download ONI reference assemblies
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p "$GITHUB_WORKSPACE/oni-refs"
+          BASE='https://raw.githubusercontent.com/Sgt-Imalas/Sgt_Imalas-Oni-Mods/master/Lib'
+          for f in Assembly-CSharp.dll Assembly-CSharp-firstpass.dll 0Harmony.dll UnityEngine.dll UnityEngine.CoreModule.dll; do
+            curl -fL "$BASE/$f" -o "$GITHUB_WORKSPACE/oni-refs/$f"
+          done
+
+      - name: Build Decor Lights
+        shell: bash
+        run: |
+          dotnet build src/DecorLights/DecorLights.csproj \
+            --configuration Release \
+            -p:ONIManagedPath="$GITHUB_WORKSPACE/oni-refs"
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: DecorLights-build
+          path: src/DecorLights/bin/Release/
+          if-no-files-found: error
